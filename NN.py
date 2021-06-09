@@ -59,7 +59,7 @@ def BackPropagation(Nhiddens, Wight2, Y, NewY, out):
 MSEV = []
 
 
-def main( Nhiddens, Nout, Nsamples, alpha, X, Y, Iters,HiddenW,OutputW):
+def NeuralNetwork( Nhiddens, Nout, Nsamples, alpha, X, Y, Iters,HiddenW,OutputW):
     for iter in range(Iters):
         s = 0
         for i in range(np.size(Nsamples)):
