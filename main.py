@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from NN import main
+from main import NeuralNetwork
 
 
 def ReadFile(FileName):
@@ -25,8 +25,8 @@ n_iterations = 500
 HiddenW = np.random.randn(Ninput, Nhidden)
 OutputW = np.random.randn(Nhidden, NOutput)
 
-HiddenW, OutputW, error = main(Nhidden, NOutput, Nsapmles, alpha, X, Y, n_iterations, HiddenW, OutputW)
+HiddenW, OutputW, error = NeuralNetwork(Nhidden, NOutput, Nsapmles, alpha, X, Y, n_iterations, HiddenW, OutputW)
+print(error,"\n")
 
-HiddenW, OutputW, error = main(Nhidden, NOutput, Nsapmles, alpha, X, Y, 1, HiddenW, OutputW)
-
+HiddenW, OutputW, error = NeuralNetwork(Nhidden, NOutput, Nsapmles, alpha, X, Y, 1, HiddenW, OutputW)
 print(error)
