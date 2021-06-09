@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from main import *
+from NN import *
 
 
 def ReadFile(FileName):
