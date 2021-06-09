@@ -30,3 +30,8 @@ print(error,"\n")
 
 HiddenW, OutputW, error = NeuralNetwork(Nhidden, NOutput, Nsapmles, alpha, X, Y, 1, HiddenW, OutputW)
 print(error)
+
+file = open("output", "x")
+file.write("Hidden Wights= " + str(HiddenW) + "\n")
+file.write("Output Wights= " + str(OutputW) + "\n")
+file.write("Error= " + str(error))
