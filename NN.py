@@ -60,18 +60,28 @@ MSEV = []
 
 
 def NeuralNetwork( Nhiddens, Nout, Nsamples, alpha, X, Y, Iters,HiddenW,OutputW):
+    global W1, W2
+    y=[]
+    MSEx=1e18
     for iter in range(Iters):
         s = 0
-        for i in range(np.size(Nsamples)):
+        y.clear()
+        for i in range(Nsamples):
             #feedFrowerd Step
             NewY, Out = FeedFrowerd(Nout, Nhiddens, HiddenW, OutputW, X[i])
             #BackPropagation Step
-            ErrorOutput, ErrorHidden = BackPropagation(Nhiddens, HiddenW, Y[i], NewY, Out)
+            ErrorOutput, ErrorHidden = BackPropagation(Nhiddens, OutputW, Y[i], NewY, Out)
             #UpdateWights Step
             UpdateWights(OutputW, ErrorOutput, Out, alpha)
             UpdateWights(HiddenW, ErrorHidden, X[i], alpha)
+            y.append(NewY)
             s += MSE(Y[i], NewY)
-        MSEV.append(s / Nsamples)
+        if(s<MSEx):
+            MSEx=s
+            W1=HiddenW
+            W2=OutputW
+        MSEV.append(s)
     #print(MSEV)
-    return HiddenW, OutputW,MSEV.pop()
+
+    return W1, W2,MSEV.pop(),y
 
